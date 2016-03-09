@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GV_url="http://garr.dl.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.10/opencv-2.4.10.zip"
-GV_sha1="0b185f5e332d5feef91722a6ed68c36a6d33909e"
+GV_url="http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/3.1.0/opencv-3.1.0.zip?r=&ts=1457551989&use_mirror=netcologne"
+GV_sha1="8c932b68fe2e1575e88dde759ab1ed1d53d6f41b"
 
 GV_depend=(
 	"cryptodev"
@@ -20,7 +20,8 @@ if [ $? == 1 ]; then
 	FU_file_get_download
 	FU_file_extract_tar
 	
-	GV_dir_name="opencv-2.4.10"
+	GV_dir_name="opencv-3.1.0"
+
 	GV_name=${GV_dir_name%-*}
 	GV_version=${GV_dir_name##$GV_name*-}
 	GV_extension="zip"

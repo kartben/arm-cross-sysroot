@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GV_url="http://code.entropywave.com/download/orc/orc-0.4.16.tar.gz"
-GV_sha1="b67131881e7834b0c820bfba468f668100fb2e91"
+GV_url="https://gstreamer.freedesktop.org/src/orc/orc-0.4.19.tar.gz"
+GV_sha1="6186a6a5faefe6b61d55e5406c7365d69b91c982"
 
 GV_depend=()
 

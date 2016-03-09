@@ -1,7 +1,7 @@
 #!/bin/bash
 
-GV_url="http://download.qt.io/official_releases/qt/5.4/5.4.1/single/qt-everywhere-opensource-src-5.4.1.tar.gz"
-GV_sha1="e696b353a80ad53bcfd9535e744b5cd3246f5fd1"
+GV_url="http://download.qt.io/official_releases/qt/5.5/5.5.1/single/qt-everywhere-opensource-src-5.5.1.tar.gz"
+GV_sha1="3d7e7805d849bcf6cf88788bc83aeb334e1cd875"
 
 GV_depend=()
 

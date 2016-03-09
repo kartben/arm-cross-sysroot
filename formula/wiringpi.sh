@@ -22,14 +22,14 @@ if [ $? == 1 ]; then
 	GV_name=$GV_dir_name
 	
 	FU_file_git_clone	
-	
+
 	cd "${GV_source_dir}/${GV_dir_name}"
-	
+
 	# remove sudo from install file
-	$SED -e 's/sudo //g' build > build.sh
+	$SED -e 's/\$sudo //g' build > build.sh
 	
 	MAKEFILES=($(find . -name Makefile))
-	
+
 	for entry in ${MAKEFILES[*]}
 	do
 		cp $entry "${entry}.ori"
@@ -41,23 +41,33 @@ if [ $? == 1 ]; then
 		cp $entry "${entry}.ori"
 		$SED -e 's/\@ldconfig//g' "${entry}.ori" > $entry
 		cp $entry "${entry}.ori"
+		$SED -e 's/\=ldconfig/\=/g' "${entry}.ori" > $entry
+		cp $entry "${entry}.ori"
 		$SED -e 's/\@cp gpio/#\@cp gpio/g' "${entry}.ori" > $entry
 		cp $entry "${entry}.ori"
 		$SED -e 's/\@chown/#\@chown/g' "${entry}.ori" > $entry
 		cp $entry "${entry}.ori"
 		$SED -e 's/\@chmod/#\@chmod/g' "${entry}.ori" > $entry
-		
+		cp $entry "${entry}.ori"
+		$SED -e 's/\$(WIRINGPI_SUID)/0/g' "${entry}.ori" > $entry
+
 		if [ "${entry}" ==  "./devLib/Makefile" ]; then
 			cp $entry "${entry}.ori"
 			$SED -e 's,INCLUDE	= -I.,'"INCLUDE	= -I. -I$UV_sysroot_dir/include"',g' "${entry}.ori" > $entry
 		fi
 		
-		
 		rm -f "${entry}.ori"
 	done
-	
+
+    cp build.sh build.sh.ori
+    $SED -e 's/\([\t ]*\)hardware=/#\1hardware=/g' build.sh.ori > build.sh
+    cp build.sh build.sh.ori
+    $SED -e 's/\([\t ]*\)make uninstall/#\1make uninstall/g' build.sh.ori > build.sh
+    rm -f build.sh.ori
+
 	echo -n "Build and Install ${GV_name}... "
 	chmod +x build.sh
+
 	if [ "$GV_debug" == true ]; then
 		./build.sh 2>&1  | tee $GV_log_file
 		FU_tools_is_error "install"
@@ -65,7 +75,7 @@ if [ $? == 1 ]; then
 		./build.sh >$GV_log_file 2>&1
 		FU_tools_is_error "install"
 	fi
-	
+
 	cd $GV_base_dir
 	
 	PKG_libs="-lwiringPi"
