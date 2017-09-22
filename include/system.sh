@@ -24,15 +24,15 @@ FU_system_require_darwin() {
 	)
 	
 	# Check for Homebrew package manager 
-	echo -n "Checking for 'brew'... "
-	if ! hash "brew" 2>/dev/null; then
-		echo "faild"
-		echo
-		echo "  To execute this script on Mac OS X you have to install Homebrew."
-		echo "  You can download Homebrew from: http://brew.sh"
-		echo
-		exit 1
-	fi
+	# echo -n "Checking for 'brew'... "
+	# if ! hash "brew" 2>/dev/null; then
+	# 	echo "faild"
+	# 	echo
+	# 	echo "  To execute this script on Mac OS X you have to install Homebrew."
+	# 	echo "  You can download Homebrew from: http://brew.sh"
+	# 	echo
+	# 	exit 1
+	# fi
 	
 	
 	# Serach if the required packages are installed. This packages are all auto 
@@ -40,13 +40,13 @@ FU_system_require_darwin() {
 	
 	for require in "${requires[@]}"
 	do
-		echo -n "Checking for '$require'... "
-		if [ $(brew list | grep -c $require) = 0 ]; then
-			echo
-			brew install $require
-		else 
-			echo "yes"
-		fi
+		echo "Checking for '$require'..."
+		# if [ $(brew list | grep -c $require) = 0 ]; then
+		# 	echo
+		# 	brew install $require
+		# else 
+		# 	echo "yes"
+		# fi
 	done
 	
 	# link gettext force
